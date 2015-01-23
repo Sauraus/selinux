@@ -1,6 +1,7 @@
 
 case node[:platform_family]
 when %r(debian|ubuntu)
+  package 'selinux'
   package 'selinux-utils'
 when 'rhel', 'fedora'
   package 'libselinux-utils'

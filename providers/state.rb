@@ -25,11 +25,11 @@ end
 
 action :enforcing do
   unless @current_resource.state == "enforcing"
+    se_template = render_selinux_template("enforcing")
     execute "selinux-enforcing" do
       not_if "getenforce | grep -qx 'Enforcing'"
       command "setenforce 1"
     end
-    se_template = render_selinux_template("enforcing")
   end
 end
 
